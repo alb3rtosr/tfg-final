@@ -1,0 +1,9 @@
+<% if project.files.attached? %>
+  <% project.files.each do |file| %>
+    <div class="container">
+      <div class="row">
+        <%= link_to file.filename, url_for(file), class: "message-file" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

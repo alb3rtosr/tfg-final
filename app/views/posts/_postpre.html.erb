@@ -1,0 +1,16 @@
+<div class="card mb-12" style="top: 0%; margin-top: 10px;">
+<div class="card-body" id="<%= dom_id post %>">
+    From topic: <%=link_to post.topic.title, topic_path(post.topic) %>
+    <h2 class="card-title"><%= post.title %></h2>
+    <%= user_image_tag(post.user, 30, 30, cl: "mr-3 rounded") %>
+    Posted by  
+    <strong><%= post.user.nickname.blank? ? post.user.email : post.user.nickname %></strong>
+    at <%=post.created_at%>
+    <br>
+    <%=post.body.split.size%>
+    words, 
+    <%=post.comments.count
+    pluralize(post.comments.count, 'comment')
+    %> 
+</div>
+</div>

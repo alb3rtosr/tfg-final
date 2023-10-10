@@ -1,0 +1,69 @@
+.topics {
+  margin-top: 20px;
+}
+.new-topics {
+  margin: 40px;
+}
+/* app/assets/stylesheets/custom.css.scss */
+
+/* Add your custom dropdown styles here */
+.custom-dropdown {
+  background-color: #e4e4e4 !important;
+
+  color: #000000 !important;
+
+  /* Add a box shadow to make the dropdown stand out */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+
+  /* Add rounded corners for a softer look */
+  border-radius: 4px !important;
+
+  /* Adjust padding to make the button smaller */
+  padding: 4px 12px !important;
+
+  /* Adjust font size to make the text smaller */
+  font-size: 14px !important;
+
+  /* Center the text horizontally */
+  text-align: center !important;
+
+  /* Customize the appearance of the dropdown arrow */
+  // background-image: url("path/to/your/custom/arrow-icon.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  padding-right: 30px !important; /* Adjust this value based on the width of your arrow icon */
+  height: auto !important; /* Reduce the height to fit the content */
+  line-height: 1.5 !important; /* Adjust line-height for centering the text */
+}
+
+.custom-project-dropdown {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  
+  /* Bootstrap 5 project-dropdown styles */
+  position: relative;
+  display: inline-block;
+  
+  /* Add a white background color to the project-dropdown button */
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Add a black border to the project-dropdown button */
+  &:focus {
+    outline: none;
+    border-color: #000;
+  }
+}
+
+.custom-project-dropdown > option {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #333;
+}

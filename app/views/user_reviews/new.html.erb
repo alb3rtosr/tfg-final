@@ -1,0 +1,6 @@
+<h2>Add a Review for <%= @user.nickname %></h2>
+
+<%= form_for [@user, @user.reviews.build] do |f| %>
+  <%= f.text_area :comment, placeholder: 'Write a review...' %>
+  <%= f.submit 'Add Review' %>
+<% end %>

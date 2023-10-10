@@ -1,0 +1,48 @@
+<h1> 3D Model</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <p class="model-timestamp">Created: <%= @model3d.created_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+        <p class="model-timestamp">Last Updated: <%= @model3d.updated_at.strftime('%B %d, %Y at %I:%M %p') %></p>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 10px">
+      <div class="card-body">
+        <h5 class="card-title">About Author</h5>
+          <%=user_image_tag(@model3d.user, 50, 50, cl: "rounded border shadow-sm d-block my-3" )%>
+        <p><strong>User:</strong> <%= @model3d.user.nickname.blank? ? @model3d.user.email : @model3d.user.nickname %></p>
+      <p><strong>Level:</strong> <%= @model3d.user.level %></p>
+      <p><strong>Experience:</strong> <%= @model3d.user.experience %></p>
+      <p><strong>Bio:</strong> <%= @model3d.user.bio %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <%= render @model3d %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="float-right">
+          <% if current_user == @model3d.user %>
+            <%= link_to "Edit this model3d", edit_model3d_path(@model3d), class: 'btn btn-primary' %> |
+          <% end %>
+          <%= link_to "Back to model3ds", model3ds_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="float-left">
+          <% if current_user == @model3d.user %>
+            <%= button_to "Destroy this model3d", @model3d, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

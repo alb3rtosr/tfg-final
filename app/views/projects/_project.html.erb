@@ -1,0 +1,45 @@
+<table class="container table" >
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>State</th>
+      <th>File</th>
+      <th>Edit</th>
+      <th>All Projects</th>
+      <th>Destroy</th>
+      <th>Acceptance</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th scope="row"><%= project.id %></th>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td><%= project.state %></td>
+        <td><%= render 'projects/attachment', project: project %></td>
+        <td><%= link_to "Edit this project", edit_project_path(:project) %></td>
+        <td><%= link_to "Back to projects", projects_path %></td>
+        <td><%= button_to "Destroy this project", @project, method: :delete %></td>
+        <td><% if project.accepted? %>
+              <strong>This project has already been accepted.</strong>
+            <% else %>
+              <%= button_to "Accept Project", accept_project_path(project), method: :patch %>
+            <% end %>
+        </td>
+        <td>
+          <% if @current_user_flagged %>
+            <p>Flags: <%= @flags_count %></p>
+          <% else %>
+            <% if user_signed_in? %>
+              <%= form_with(url: flags_path(flaggable_type: "Project", flaggable_id: @project.id), method: :post) do |f| %>
+                <%= f.submit "Flag Project" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+              
+      </tr>
+  </tbody>
+</table>

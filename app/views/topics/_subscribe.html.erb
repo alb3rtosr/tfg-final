@@ -1,0 +1,55 @@
+<div class="card mb-5" style="top: 0%;">
+  <div class="card-header">
+    Topic Details
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="card-title">#1 - <%= @topic.title %></h5>
+        <p class="card-text"><%= @topic.description %></p>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <p class="card-text">
+          <strong>Member:</strong> <%= pluralize @subscriber_count, "member" %>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <% if current_user && subs = Subscription.find_by(user_id: current_user.id, topic_id: @topic.id) %>
+          <%= form_for @subscription do |f| %>
+            <%= f.hidden_field :topic_id, value: topic_id %>
+            <div class="text-right">
+              <%= link_to "Unsubscribe Topic", subscriptions_delete_path(subs), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm rounded" %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= form_for @subscription do |f| %>
+            <%= f.hidden_field :topic_id, value: topic_id %>
+            <div class="text-right">
+              <%= f.submit "Subscribe Topic", class: "btn btn-success btn-sm rounded" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <p class="card-text">
+          <%= link_to "Create Post on this Topic", new_topic_post_path(@topic), class: "btn btn-primary btn-sm rounded" %>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p class="card-text">
+        <% if current_user && @topic.user == current_user %>
+            <%= link_to "Edit Topic", edit_topic_path(@topic), class: "btn btn-info btn-sm rounded" %>
+            <%= button_to "Destroy Topic", @topic, method: :delete, class: "btn btn-danger btn-sm rounded", data: { confirm: "Are you sure?" } %>
+          <% end %>
+          
+          <%= link_to "Back to Topics", topics_path, class: "btn btn-secondary btn-sm rounded" %>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

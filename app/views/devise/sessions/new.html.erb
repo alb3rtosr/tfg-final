@@ -1,0 +1,29 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <h2 class="card-title text-center">Sign in </h2>
+        <div class="card-body py-md-4">
+          <form _lpchecked="1">
+            <div class="form-group">
+              <%= f.email_field :email, class: "form-control", id: "email", placeholder: "Email", autofocus: true, autocomplete: "email" %>
+            </div>                      
+            <div class="form-group">
+               <%= f.password_field :password, class: "form-control", id: "password", placeholder: "Password", autocomplete: "current-password" %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+            <% end %>
+            <div class="d-flex flex-row align-items-center justify-content-between">
+                <%= f.submit "Log in", class: "btn devise-btn btn-primary" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

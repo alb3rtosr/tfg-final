@@ -1,0 +1,47 @@
+<% provide(:title, "3d View") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    <style>
+        /* Center the card horizontally and vertically */
+        /* Style the card */
+        .custom-card {
+            object-fit: contain;
+            width: auto;
+            height: 60vh; /* Half of the viewport width */
+        }
+        .jumbotron {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: #E1E7FF;
+        }
+        model-viewer{
+            width: 40vh;
+            height: inherit;
+        }
+    </style>
+</head>
+<body>
+<h1 class="text-center">Proof of concept: client-side 3D rendering</h1>
+<div class="center jumbotron">
+    <div class="card custom-card">
+            <model-viewer alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum" 
+            src="https://modelviewer.dev/shared-assets/models/NeilArmstrong.glb" 
+            ar environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr" 
+            poster="https://modelviewer.dev/shared-assets/models/NeilArmstrong.webp" 
+            shadow-intensity="1" 
+            camera-controls touch-action="pan-y">
+            </model-viewer>
+    </div>
+</div>
+<!-- Use it like any other HTML element -->
+</body>
+
+</html>

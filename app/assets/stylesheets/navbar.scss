@@ -1,0 +1,45 @@
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 50px;
+
+  .navbar-nav {
+    align-items: center;
+  }
+
+  &-brand {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  &-toggler {
+    line-height: 1;
+  }
+
+  &-collapse {
+    justify-content: end;
+
+    ul {
+      .nav-item {
+        .nav-link {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.btn-primary {
+  font-size: 12px;
+  padding: 0.20rem 0.5rem;
+}
+
+.btn-sm {
+  border-radius: 0rem !important; /* Remove border-radius */
+}
+
+.btn-danger {
+  font-size: 12px;
+  padding: 0.20rem 1rem;
+  border-radius: 0rem;
+}

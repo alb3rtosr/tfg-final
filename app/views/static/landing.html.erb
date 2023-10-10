@@ -1,0 +1,29 @@
+<% provide(:title, "Welcome") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Landing Page">
+</head>
+<body>
+  <div class="center jumbotron">
+    <h1 class="mb-4">Home</h1>
+    <p>
+        Welcome to Pilos. <br>
+        You can
+        <% if !user_signed_in? %>
+            <%= link_to "log in", new_user_session_path %>,
+            <%= link_to "register", new_user_registration_path %> or
+        <% end %>
+        use the navigation bar to access all the content that our platform's maker community has to offer.
+    </p>
+    <h1 class="mb-4">By Alberto Sanz Romera</h1>
+    <p>This is a Ruby on Rails project that aims to create a space for makers, artisans, and 3D printing enthusiasts.</p>
+    <p>Have fun with our community!</p>
+</div>
+
+
+  
+</body>
+</html>

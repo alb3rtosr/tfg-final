@@ -1,0 +1,13 @@
+  <%= render partial: "topics/subscribe", locals: { topic_id: @topic.id } %>
+  <div class="container">
+  <h1>Posts</h1>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render partial: "posts/postpre", locals: {post: post} %>
+      <p>
+        <%= link_to "Show this post", post %>
+      </p>
+    <% end %>
+  </div>
+  <%= link_to "New post", new_post_path, class: "btn btn-primary" %>
+</div>

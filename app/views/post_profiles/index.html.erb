@@ -1,0 +1,67 @@
+<div class="project-profile container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <%=user_image_tag(current_user, 200, 200) %>
+        <div class="card-body">
+          <h5 class="card-title"><%= current_user.nickname %></h5>
+          <p class="card-text"><%= current_user.bio %></p>
+          <a href="#" class="btn btn-primary">Comments on User</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h2>About</h2>
+      <p><%= current_user.bio %></p>
+      <h2>Experience</h2>
+      <p><%= current_user.experience %></p>
+      <h2>Level</h2>
+      <p><%= current_user.level %></p>
+      <h2>Email</h2>
+      <p><%= current_user.email %></p>
+      <h2>Posts</h2>
+      <% if @posts %>
+        <% posts = Post.where(user_id: current_user.id) %>
+            <h3 class="card-title">You have <%= posts.size %> posts created</h3>
+      <% else %>
+        <p>There is no posts created here</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @posts.nil? %>
+  <div class="text-center">
+  <h1>You have not created any post yet</h1>
+  
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row">
+        <div class="post-row col-md-12">
+        <% @posts.each do |post| %>
+          <div class="card mb-12">
+            <div class="">
+            </div>
+            <div class="card-body">
+              <h2 class="card-title"><%= post.title %></h2>
+              <p class="card-text"><%= post.body.html_safe %></p>
+              <p class="card-text"><strong>Author:</strong> <%= post.user.email %></p>
+              <div class="btn-group">
+                <% if user_signed_in? %>
+                  <% if post.user_id == current_user.id %>
+                    <%= link_to "Edit this post", edit_post_path(post), class: "btn btn-primary" %>
+                    <%= link_to "Back to posts", root_path, class: "btn btn-primary" %>
+                    <%= link_to "Show this post", post, class: "btn btn-primary" %>
+                    <%= button_to "Destroy this post", post, method: :delete, class: "btn btn-primary" %>
+                    <button type="button" class="btn btn-danger" data-method="delete">Delete</button>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<%= link_to "Add New project", new_project_path, class: "btn btn-success" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>State</th>
+      <th>File</th>
+      <th>Show</th>
+      <th>Project Roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <th scope="row"><%= project.id %></th>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td><%= project.state %></td>
+        <td><%= render 'projects/attachment', project: project %></td>
+        <td><%= link_to "Show this project", project %></td>
+        <td><% if project.accepted? %>
+                <strong>This project has already been accepted.</strong>
+                  <% elsif current_user%>
+                <%= button_to "Accept Project", accept_project_path(project), method: :patch %>
+                <% else%>
+                <strong>Log in to see more options</strong>
+
+        <% end %>
+              </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

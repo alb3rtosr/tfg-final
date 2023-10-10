@@ -1,0 +1,6 @@
+
+<a href="<%= new_post_path %>" class="btn btn-info">Add Post</a>
+
+<% @posts.each do |post| %>
+  <%= render post %>
+<% end %>

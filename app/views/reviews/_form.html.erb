@@ -1,0 +1,4 @@
+<%= simple_form_for [post, post.reviews.build] do |form| %>  
+  <%= form.text_area :comment %><br>
+  <%= form.button :submit %>
+<% end %>

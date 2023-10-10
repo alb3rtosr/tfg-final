@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+  <%= image_tag "pilos.png", height: 50, margin: 30, id: "img-logo", alt: "Pilos" %>
+    <%= link_to "Pilos", root_path,class: "navbar-brand nav-link" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+          <%= link_to "<Model-Viewer>", "/3dview",class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "3D Models", model3ds_path,class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Topics", topics_path,class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Posts", posts_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Projects", projects_path, class: "nav-link" %>
+        </li>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <ul class="navbar-nav">
+        <% if current_user %>
+        
+          <li class="nav-item dropdown" style="margin-left: 50px">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <strong><%= (current_user.nickname.blank? ? current_user.email : current_user.nickname).capitalize %> </strong>
+              <%=user_image_tag(current_user, 50, 50) %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+            
+              <li class="nav-item"> <%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %></li>      
+              <li class="nav-item"> <%= link_to "My Models", model3ds_me_path, class: "nav-link" %></li>           
+              <li class="nav-item"> <%= link_to " Project Profile", project_profiles_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to " Post Profile", post_profiles_path, class: "nav-link" %></li>
+              <li class="nav-item"> <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+              </ul>
+              </li>
+            <% else %>
+              <li class="nav-item"> <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-sm me-2 rounded"  %></li>
+              <li class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-success btn-sm me-2 rounded"  %></li>
+            <% end %>
+            </ul>
+          </li>
+        </ul>
+    </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+

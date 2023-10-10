@@ -1,0 +1,6 @@
+<p> <%= review.comment %> </p>
+<% if user_signed_in? %>
+  <% if review.user_id == current_user.id %>
+    <%= link_to "Edit", edit_post_review_path(review.post, review)%>
+  <% end %>
+<% end %>

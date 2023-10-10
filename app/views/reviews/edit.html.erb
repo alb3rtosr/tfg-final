@@ -1,0 +1,6 @@
+<h1> Edit review </h1>
+
+<%= simple_form_for([@post, @review]) do |f| %>
+  <%= f.text_field :comment%>
+  <%= f.button :submit%>
+<% end %>

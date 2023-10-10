@@ -1,0 +1,25 @@
+<div id="<%= dom_id model3d %>" class="card">
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= model3d.description %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <strong>User:</strong> <%= model3d.user.email %>
+    </li>
+    <li class="list-group-item">
+      <strong>Makes:</strong> <%= model3d.makes %>
+    </li>
+  </ul>
+  <% if model3d.image.attached? %>
+    <div class="card-img-top">
+      <%= image_tag model3d.image, class: 'img-fluid' %>
+    </div>
+  <% end %>
+  <% if model3d.file.attached? %>
+    <div class="card-body">
+      <strong>File:</strong>
+      <%= link_to 'Download', rails_blob_path(model3d.file, disposition: 'attachment') %>
+    </div>
+  <% end %>
+</div>

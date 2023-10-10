@@ -1,0 +1,77 @@
+<div class="project-profile container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <%=user_image_tag(current_user, 200, 200) %>
+        <div class="card-body">
+          <h5 class="card-title"><%= current_user.nickname %></h5>
+          <p class="card-text"><%= current_user.bio %></p>
+          <a href="#" class="btn btn-primary">Comments on User</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h2>About</h2>
+      <p><%= current_user.bio %></p>
+      <h2>Experience</h2>
+      <p><%= current_user.experience %></p>
+      <h2>Level</h2>
+      <p><%= current_user.level %></p>
+      <h2>Email</h2>
+      <p><%= current_user.email %></p>
+      <h2>Projects</h2>
+      <% if @project_profiles %>
+        <% projects = Project.where(user_id: current_user.id) %>
+            <h3 class="card-title">You have <%= projects.size %> projects uploaded</h3>
+      <% else %>
+        <p>There is no project uploaded here</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% if @project_profiles.nil? %>
+  <div class="text-center">
+  <h1>You have not uploaded any project yet</h1>
+  </div>
+<% else %>
+  <%#--- <%= render @project_profiles %>
+  <div class="container col-sm-12">
+  <div class="text-center new-topics">
+  <%= link_to "Add New project", new_project_path, class: "btn btn-success" %>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>State</th>
+      <th>File</th>
+      <th>Show</th>
+      <th>Project Roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <th scope="row"><%= project.id %></th>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td><%= project.state %></td>
+        <td><%= render 'projects/attachment', project: project %></td>
+        <td><%= link_to "Show this project", project %></td>
+        <td><% if project.accepted? %>
+                <strong>This project has already been accepted.</strong>
+                  <% else %>
+                <%= button_to "Accept Project", accept_project_path(project), method: :patch %>
+
+        <% end %>
+              </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

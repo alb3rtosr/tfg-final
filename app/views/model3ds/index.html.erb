@@ -1,0 +1,72 @@
+<% provide(:title, "3D Models") %>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">3D Models</h1>
+  <%= link_to "New model3d", new_model3d_path, class: 'btn btn-outline' %>
+</div>
+
+<%= form_tag(model3ds_path, method: 'get', class: 'rounded-bar') do %>
+  <div class="input-group">
+    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by description' %>
+    <%= select_tag :sort, options_for_select([['Sort by Description (Ascending)', 'description_asc'], ['Sort by Description (Descending)', 'description_desc'], ['Sort by Makes (Descending)', 'makes_desc']], params[:sort]), include_blank: "Sort by...", class: 'form-control' %>
+
+      <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+
+  </div>
+<% end %>
+
+
+
+
+<div class="model3ds">
+  <% @model3ds.each do |model3d| %>
+    <section class="model3d">
+      <div class="clickable-section">
+        <div class="user">
+          <div class="avatar">
+            <%=user_image_tag(model3d.user, 50, 50) %>
+          </div>
+          <div class="username">
+            <div class="user-email">
+              <%= model3d.user.nickname.blank? ? model3d.user.email : model3d.user.nickname %>
+            </div>
+          </div>
+        </div>
+        <%= image_tag(model3d.image, class: 'main-image') %>
+        <%= link_to(model3d_path(model3d), class: 'clickable-overlay') do %>
+          <!-- Empty content, acts as a transparent overlay -->
+        <% end %>
+      </div>
+        <div class="description">
+          <%= model3d.description %>
+        </div>
+      <div class="actions row">
+        <div class="col right">
+          Makes: 
+          <%= model3d.makes %>
+        </div>
+        <div class="col">
+          <%= link_to 'Download', download_model3d_path(model3d) %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</div>
+
+
+
+</div>
+<div class="row margin-25-0 margin-bottom-0 pagination-row">
+  <div class="col-lg-8 col-md-8 col-sm-7 col-6 padding-0">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <%= will_paginate(@model3ds, previous_label: "&laquo;", next_label: "&raquo;", class: "small-font", outer_window: 1, inner_window: 0) %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-5 col-6 pagination-info">
+    <span class="float-right"><%= page_entries_info(@model3ds) %></span>
+  </div>
+</div>
+
+
+

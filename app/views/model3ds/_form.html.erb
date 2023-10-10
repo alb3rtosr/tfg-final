@@ -1,0 +1,33 @@
+<%= form_for @model3d do |f| %>
+  <div class="form-group">
+    <%= f.label :description, "Description (Max 100 Characters)" %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, "Image" %>
+    <%= f.file_field :image, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :file, "File" %>
+    <%= f.file_field :file, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :user_id, value: current_user.id, class: 'd-none' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :public, "Public model" %>
+    <%= f.check_box :public, checked: true, class: 'form-check-input' %>
+  </div>
+  <div class="text-center">
+    <%= f.submit 'Submit model', class: 'btn btn-primary' %>
+  </div>
+  <% if @model3d.errors.any? %>
+    <div class="alert alert-danger mt-3">
+      <ul>
+        <% @model3d.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
